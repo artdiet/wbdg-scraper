@@ -21,7 +21,7 @@ REQUEST_DELAY = 0.25  # seconds between HTTP requests
 @lightweight
 @transform(
     wbdg_pdfs=MediaSetOutput(
-        "/Coordcode-82190b/Engineer Assistant/media/WBDG_UFC_PDFs"
+        "ri.mio.main.media-set.b201835c-6898-44f3-9d5f-77162fdca7c5"
     )
 )
 def compute(wbdg_pdfs: LightweightMediaSetOutputParam):
