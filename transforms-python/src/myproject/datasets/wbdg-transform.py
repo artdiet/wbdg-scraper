@@ -111,12 +111,22 @@ def compute(wbdg_source, wbdg_pdfs, connection_test_output):
     for pdf_url in sorted(pdf_urls):
         filename = urlparse(pdf_url).path.split("/")[-1]
 
-        # Skip if the exact path already exists (makes rebuilds cheap)
-        if wbdg_pdfs.media_item_exists_by_path(filename):
+        # Check if the file already exists in the media set
+        try:
+            existing_item = wbdg_pdfs.get_media_item_by_path(filename)
+            if existing_item is not None:
+                print(f"Skipping existing file: {filename}")
+                continue
+        except Exception as e:
+            print(f"Error checking for existing file {filename}: {str(e)}")
             continue
 
-        response = client.get(pdf_url, stream=True, timeout=60)
-        response.raise_for_status()
-        wbdg_pdfs.put_media_item(response.raw, filename)
+        try:
+            response = client.get(pdf_url, stream=True, timeout=60)
+            response.raise_for_status()
+            wbdg_pdfs.put_media_item(response.raw, filename)
+            print(f"Successfully uploaded: {filename}")
+        except Exception as e:
+            print(f"Error uploading file {filename}: {str(e)}")
 
         time.sleep(REQUEST_DELAY)
