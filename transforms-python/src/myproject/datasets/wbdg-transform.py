@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 from transforms.api import transform
 from transforms.mediasets import MediaSetOutput
 from transforms.external.systems import external_systems, Source
+from pyspark.sql import SparkSession
+import pandas as pd
 
 REQUEST_DELAY = 0.25  # seconds between HTTP requests
 
@@ -15,19 +17,65 @@ REQUEST_DELAY = 0.25  # seconds between HTTP requests
 @transform(
     wbdg_pdfs=MediaSetOutput(
         "ri.mio.main.media-set.b201835c-6898-44f3-9d5f-77162fdca7c5"
-    )
+    ),
+    connection_test_output=Output("ri.foundry.main.dataset.58db10e7-d87c-4f20-a0e8-3388260681d4")
 )
-def compute(wbdg_source, wbdg_pdfs):
+def compute(wbdg_source, wbdg_pdfs, connection_test_output):
     """
     Crawl the WBDG UFC index and stream every PDF into a media dataset.
     The first successful build creates the media set; subsequent builds
     add only new or updated files (idempotent).
     """
-    url = wbdg_source.get_https_connection().url
+    base_url = wbdg_source.get_https_connection().url
     client = wbdg_source.get_https_connection().get_client()
+    ufc_url = urljoin(base_url, "dod/ufc")
+
+    # Connection test
+    try:
+        response = client.get(ufc_url, timeout=30)
+        response.raise_for_status()
+        
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        title = soup.title.string if soup.title else "No title found"
+        sample_text = soup.get_text()[:500]  # Get first 500 characters of text content
+        
+        result = {
+            "status": "success",
+            "url": ufc_url,
+            "status_code": response.status_code,
+            "content_length": len(response.content),
+            "title": str(title),
+            "sample_text": sample_text
+        }
+        print(f"Successfully connected to {ufc_url}")
+        print(f"Status code: {response.status_code}")
+        print(f"Content length: {len(response.content)} bytes")
+        print(f"Title: {title}")
+        print(f"Sample text: {sample_text[:100]}...")
+    except requests.exceptions.RequestException as e:
+        result = {
+            "status": "failure",
+            "url": ufc_url,
+            "error": str(e),
+            "title": "",
+            "sample_text": ""
+        }
+        print(f"Failed to connect to {ufc_url}")
+        print(f"Error: {str(e)}")
+
+    # Write connection test results
+    pandas_df = pd.DataFrame([result])
+    spark = SparkSession.builder.getOrCreate()
+    spark_df = spark.createDataFrame(pandas_df)
+    connection_test_output.write_dataframe(spark_df)
+
+    # If connection failed, stop here
+    if result["status"] == "failure":
+        return
 
     # ---------- 1. Discover all PDF URLs in the UFC section ----------
-    visited, queue, pdf_urls = set(), [url], set()
+    visited, queue, pdf_urls = set(), [ufc_url], set()
 
     while queue:
         page = queue.pop()
@@ -54,7 +102,7 @@ def compute(wbdg_source, wbdg_pdfs):
             href = urljoin(page, a["href"])
             if href.lower().endswith(".pdf"):
                 pdf_urls.add(href)
-            elif href.startswith(url) and href not in visited:
+            elif href.startswith(ufc_url) and href not in visited:
                 queue.append(href)
 
         time.sleep(REQUEST_DELAY)
