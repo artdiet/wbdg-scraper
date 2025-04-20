@@ -3,7 +3,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from transforms.api import transform
+from transforms.api import transform, Output
 from transforms.mediasets import MediaSetOutput
 from transforms.external.systems import external_systems, Source
 from pyspark.sql import SparkSession
