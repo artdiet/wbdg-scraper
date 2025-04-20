@@ -1,41 +1,33 @@
-# transforms/wbdg_scraper.py
-#
-# Scrapes the WBDG UFC site and uploads every PDF into a Foundry media set.
-# 3rd‑party deps: requests, beautifulsoup4  (add to requirements.txt)
-#
-# NOTE: Install the “transforms‑media” library in this repo once.
-#       Libraries drawer  ➞  search “transforms-media” ➞  Install.
-
 import time
 from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from transforms.api import transform, lightweight
-from transforms.mediasets import MediaSetOutput, LightweightMediaSetOutputParam
+from transforms.api import transform
+from transforms.mediasets import MediaSetOutput
+from transforms.external.systems import external_systems, Source
 
-INDEX_URL = "https://www.wbdg.org/dod/ufc"
 REQUEST_DELAY = 0.25  # seconds between HTTP requests
 
-
+@external_systems(
+    wbdg_source=Source("ri.magritte..source.788a5383-dc87-44e9-9e69-a956a548f26b")
+)
 @transform(
     wbdg_pdfs=MediaSetOutput(
         "ri.mio.main.media-set.b201835c-6898-44f3-9d5f-77162fdca7c5"
     )
 )
-def compute(wbdg_pdfs: LightweightMediaSetOutputParam):
+def compute(wbdg_source, wbdg_pdfs):
     """
     Crawl the WBDG UFC index and stream every PDF into a media dataset.
     The first successful build creates the media set; subsequent builds
     add only new or updated files (idempotent).
     """
-    session = requests.Session()
-    session.headers.update(
-        {"User-Agent": "foundry-wbdg-scraper/1.0 (https://wbdg.org)"}
-    )
+    url = wbdg_source.get_https_connection().url
+    client = wbdg_source.get_https_connection().get_client()
 
     # ---------- 1. Discover all PDF URLs in the UFC section ----------
-    visited, queue, pdf_urls = set(), [INDEX_URL], set()
+    visited, queue, pdf_urls = set(), [url], set()
 
     while queue:
         page = queue.pop()
@@ -43,27 +35,26 @@ def compute(wbdg_pdfs: LightweightMediaSetOutputParam):
             continue
         visited.add(page)
 
-
-        import time
-        from requests.exceptions import ConnectionError
-
         retries = 3
         for attempt in range(retries):
             try:
-                html = session.get(page, timeout=30).text
+                response = client.get(page, timeout=30)
+                response.raise_for_status()
+                html = response.text
                 break
-            except ConnectionError:
+            except requests.exceptions.RequestException:
                 if attempt < retries - 1:
                     time.sleep(2 ** attempt)  # Exponential backoff
                 else:
                     raise
+
         soup = BeautifulSoup(html, "html.parser")
 
         for a in soup.select("a[href]"):
             href = urljoin(page, a["href"])
             if href.lower().endswith(".pdf"):
                 pdf_urls.add(href)
-            elif href.startswith(INDEX_URL) and href not in visited:
+            elif href.startswith(url) and href not in visited:
                 queue.append(href)
 
         time.sleep(REQUEST_DELAY)
@@ -76,8 +67,8 @@ def compute(wbdg_pdfs: LightweightMediaSetOutputParam):
         if wbdg_pdfs.media_item_exists_by_path(filename):
             continue
 
-        with session.get(pdf_url, stream=True, timeout=60) as r:
-            r.raise_for_status()
-            wbdg_pdfs.put_media_item(r.raw, filename)
+        response = client.get(pdf_url, stream=True, timeout=60)
+        response.raise_for_status()
+        wbdg_pdfs.put_media_item(response.raw, filename)
 
         time.sleep(REQUEST_DELAY)
