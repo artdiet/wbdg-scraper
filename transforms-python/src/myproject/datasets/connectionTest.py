@@ -1,6 +1,7 @@
 import requests
 from transforms.api import transform, Output
 from transforms.external.systems import external_systems, Source
+import pandas as pd
 
 @external_systems(
     wbdg_source=Source("ri.magritte..source.788a5383-dc87-44e9-9e69-a956a548f26b")
