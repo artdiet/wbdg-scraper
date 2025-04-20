@@ -12,7 +12,43 @@ from pyspark.sql import SparkSession
     connection_test_output=Output("ri.foundry.main.dataset.58db10e7-d87c-4f20-a0e8-3388260681d4")
 )
 def test_connection(wbdg_source, connection_test_output):
-    # ... (rest of your code remains the same)
+    url = wbdg_source.get_https_connection().url
+    client = wbdg_source.get_https_connection().get_client()
+    
+    try:
+        response = client.get(url, timeout=30)
+        response.raise_for_status()
+        
+        # Parse the HTML content
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Extract the title and a sample of the text content
+        title = soup.title.string if soup.title else "No title found"
+        sample_text = soup.get_text()[:500]  # Get first 500 characters of text content
+        
+        result = {
+            "status": "success",
+            "url": url,
+            "status_code": response.status_code,
+            "content_length": len(response.content),
+            "title": str(title),  # Convert to string explicitly
+            "sample_text": sample_text
+        }
+        print(f"Successfully connected to {url}")
+        print(f"Status code: {response.status_code}")
+        print(f"Content length: {len(response.content)} bytes")
+        print(f"Title: {title}")
+        print(f"Sample text: {sample_text[:100]}...")  # Print first 100 characters of sample text
+    except requests.exceptions.RequestException as e:
+        result = {
+            "status": "failure",
+            "url": url,
+            "error": str(e),
+            "title": "",  # Add empty string for consistency
+            "sample_text": ""  # Add empty string for consistency
+        }
+        print(f"Failed to connect to {url}")
+        print(f"Error: {str(e)}")
 
     # Create a pandas DataFrame
     pandas_df = pd.DataFrame([result])
