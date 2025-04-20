@@ -47,4 +47,8 @@ def test_connection(wbdg_source, connection_test_output):
         print(f"Failed to connect to {url}")
         print(f"Error: {str(e)}")
 
-    connection_test_output.write_dataframe(pd.DataFrame([result]))
+    
+    from pyspark.sql import SparkSession
+    spark = SparkSession.builder.getOrCreate()
+    spark_df = spark.createDataFrame(pd.DataFrame([result]))
+    connection_test_output.write_dataframe(spark_df)
