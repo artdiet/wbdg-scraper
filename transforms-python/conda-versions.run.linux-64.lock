@@ -3,6 +3,8 @@
 # Run `./gradlew --write-locks` to regenerate.
 _libgcc_mutex=0.1=conda_forge @ linux-64
 _openmp_mutex=4.5=2_gnu @ linux-64
+annotated-types=0.7.0=pyhd8ed1ab_1 @ noarch
+anyio=4.9.0=pyh29332c3_0 @ noarch
 aws-c-auth=0.8.0=hb88c0a9_10 @ linux-64
 aws-c-cal=0.8.0=hecf86a2_2 @ linux-64
 aws-c-common=0.10.3=hb9d3cd8_0 @ linux-64
@@ -31,13 +33,20 @@ cffi=1.17.1=py311hf29c0ef_0 @ linux-64
 charset-normalizer=3.4.1=pyhd8ed1ab_0 @ noarch
 conjure-python-client=2.12.0=pyhd8ed1ab_1 @ noarch
 decorator=5.2.1=pyhd8ed1ab_0 @ noarch
+exceptiongroup=1.2.2=pyhd8ed1ab_1 @ noarch
+external-systems=0.25.0=py_0 @ noarch
 foundry-data-sidecar-api=0.781.0=py_0 @ noarch
+foundry-platform-sdk=1.5.0=pyhd8ed1ab_0 @ noarch
 foundry-transforms-lib-python=0.835.0=py_0 @ noarch
+frozendict=2.4.6=py311h9ecbd09_0 @ linux-64
 future=1.0.0=pyhd8ed1ab_2 @ noarch
 gflags=2.2.2=h5888daf_1005 @ linux-64
 glog=0.7.1=hbabe93e_0 @ linux-64
+h11=0.14.0=pyhd8ed1ab_1 @ noarch
 h2=4.2.0=pyhd8ed1ab_0 @ noarch
 hpack=4.1.0=pyhd8ed1ab_0 @ noarch
+httpcore=1.0.7=pyh29332c3_1 @ noarch
+httpx=0.28.1=pyhd8ed1ab_0 @ noarch
 hyperframe=6.1.0=pyhd8ed1ab_0 @ noarch
 icu=75.1=he02047a_0 @ linux-64
 idna=3.10=pyhd8ed1ab_1 @ noarch
@@ -106,6 +115,8 @@ pyaml=25.1.0=pyhd8ed1ab_0 @ noarch
 pyarrow-core=18.1.0=py311h4854187_0_cpu @ linux-64
 pyarrow=18.1.0=py311h38be061_0 @ linux-64
 pycparser=2.22=pyh29332c3_1 @ noarch
+pydantic-core=2.33.1=py311h687327b_0 @ linux-64
+pydantic=2.11.3=pyh3cfb1c2_0 @ noarch
 pysocks=1.7.1=pyha55dd90_7 @ noarch
 pyspark-src=3.5.1.41=py_0 @ noarch
 pyspark=3.5.1.41=py_0 @ noarch
@@ -122,15 +133,19 @@ s2n=1.5.9=h0fd0ee4_0 @ linux-64
 setuptools=70.0.0=pyhd8ed1ab_0 @ noarch
 six=1.17.0=pyhd8ed1ab_0 @ noarch
 snappy=1.2.1=h8bd8927_1 @ linux-64
+sniffio=1.3.1=pyhd8ed1ab_1 @ noarch
 soupsieve=2.5=pyhd8ed1ab_1 @ noarch
 tk=8.6.13=noxft_h4845f30_101 @ linux-64
 transforms-expectations=0.762.0=py_0 @ noarch
+transforms-external-systems=0.760.0=py_0 @ noarch
 transforms-media=0.760.0=py_0 @ noarch
 transforms-preview=0.762.0=py_0 @ noarch
 transforms-verbs=0.762.0=py_0 @ noarch
 transforms=2.322.0=py_0 @ noarch
 typeguard=4.4.2=pyhd8ed1ab_0 @ noarch
+types-requests=2.32.0.20250306=pyhd8ed1ab_0 @ noarch
 typing-extensions=4.13.2=h0e9735f_0 @ noarch
+typing-inspection=0.4.0=pyhd8ed1ab_0 @ noarch
 typing_extensions=4.13.2=pyh29332c3_0 @ noarch
 tzdata=2025b=h78e105d_0 @ noarch
 urllib3=2.4.0=pyhd8ed1ab_0 @ noarch
@@ -141,4 +156,4 @@ zstandard=0.23.0=py311hbc35293_1 @ linux-64
 zstd=1.5.6=ha6fb4c9_0 @ linux-64
 
 [Conda lock version]
-v2 - f8ed1265950556a7cb7cbee0a6a178242d80e6874069657d0f1afc683c71f667
+v2 - be25eab3e7792831d0fbd7f6682cf330183fbb6c144f5cf1021aa364a98836e4

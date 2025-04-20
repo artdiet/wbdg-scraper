@@ -30,6 +30,7 @@ requirements:
     - beautifulsoup4 >=4.9.0
     - requests
     - transforms-media
+    - transforms-external-systems
 
 build:
   script: python setup.py install --single-version-externally-managed --record=record.txt
