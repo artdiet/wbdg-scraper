@@ -1,5 +1,10 @@
 ---
 mappings:
+- alias: "/Coordcode-82190b/Engineer Assistant/logic/wbdg_connection_log"
+  modes:
+  - "BUILD"
+  path: "/deprecated-field"
+  rid: "ri.foundry.main.dataset.7de7e532-fbb6-4326-b028-264fc3639630"
 - alias: "ri.foundry.main.dataset.58db10e7-d87c-4f20-a0e8-3388260681d4"
   modes:
   - "BUILD"
