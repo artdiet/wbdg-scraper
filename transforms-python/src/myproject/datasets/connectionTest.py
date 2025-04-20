@@ -30,7 +30,7 @@ def test_connection(wbdg_source, connection_test_output):
             "url": url,
             "status_code": response.status_code,
             "content_length": len(response.content),
-            "title": title,
+            "title": str(title),  # Convert to string explicitly
             "sample_text": sample_text
         }
         print(f"Successfully connected to {url}")
@@ -42,13 +42,13 @@ def test_connection(wbdg_source, connection_test_output):
         result = {
             "status": "failure",
             "url": url,
-            "error": str(e)
+            "error": str(e),
+            "title": "",  # Add empty string for consistency
+            "sample_text": ""  # Add empty string for consistency
         }
         print(f"Failed to connect to {url}")
         print(f"Error: {str(e)}")
 
-    
-    from pyspark.sql import SparkSession
-    spark = SparkSession.builder.getOrCreate()
-    spark_df = spark.createDataFrame(pd.DataFrame([result]))
-    connection_test_output.write_dataframe(spark_df)
+    # Create a pandas DataFrame and write it to the output
+    df = pd.DataFrame([result])
+    connection_test_output.write_dataframe(df)
