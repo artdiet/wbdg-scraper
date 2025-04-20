@@ -18,7 +18,6 @@ INDEX_URL = "https://www.wbdg.org/dod/ufc"
 REQUEST_DELAY = 0.25  # seconds between HTTP requests
 
 
-@lightweight(should_snapshot=True)
 @transform(
     wbdg_pdfs=MediaSetOutput(
         "ri.mio.main.media-set.b201835c-6898-44f3-9d5f-77162fdca7c5"
