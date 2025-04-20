@@ -18,7 +18,7 @@ REQUEST_DELAY = 0.25  # seconds between HTTP requests
     wbdg_pdfs=MediaSetOutput(
         "ri.mio.main.media-set.b201835c-6898-44f3-9d5f-77162fdca7c5"
     ),
-    connection_test_output=Output("ri.foundry.main.dataset.58db10e7-d87c-4f20-a0e8-3388260681d4")
+    connection_test_output=Output("/Coordcode-82190b/Engineer Assistant/logic/wbdg_connection_log")
 )
 def compute(wbdg_source, wbdg_pdfs, connection_test_output):
     """
