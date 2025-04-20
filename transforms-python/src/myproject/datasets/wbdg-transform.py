@@ -43,7 +43,20 @@ def compute(wbdg_pdfs: LightweightMediaSetOutputParam):
             continue
         visited.add(page)
 
-        html = session.get(page, timeout=30).text
+
+        import time
+        from requests.exceptions import ConnectionError
+
+        retries = 3
+        for attempt in range(retries):
+            try:
+                html = session.get(page, timeout=30).text
+                break
+            except ConnectionError:
+                if attempt < retries - 1:
+                    time.sleep(2 ** attempt)  # Exponential backoff
+                else:
+                    raise
         soup = BeautifulSoup(html, "html.parser")
 
         for a in soup.select("a[href]"):
