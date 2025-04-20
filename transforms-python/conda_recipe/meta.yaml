@@ -27,6 +27,9 @@ requirements:
     - transforms-preview
     - transforms-verbs
     - foundry-transforms-lib-python
+    - beautifulsoup4 >=4.9.0
+    - requests
+    - transforms-media
 
 build:
   script: python setup.py install --single-version-externally-managed --record=record.txt

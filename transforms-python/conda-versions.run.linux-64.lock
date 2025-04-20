@@ -21,6 +21,7 @@ azure-identity-cpp=1.10.0=h113e628_0 @ linux-64
 azure-storage-blobs-cpp=12.13.0=h3cf044e_1 @ linux-64
 azure-storage-common-cpp=12.8.0=h736e048_1 @ linux-64
 azure-storage-files-datalake-cpp=12.12.0=ha633028_1 @ linux-64
+beautifulsoup4=4.13.4=pyha770c72_0 @ noarch
 brotli-python=1.1.0=py311hfdbb021_2 @ linux-64
 bzip2=1.0.8=h4bc722e_7 @ linux-64
 c-ares=1.34.5=hb9d3cd8_0 @ linux-64
@@ -38,6 +39,7 @@ glog=0.7.1=hbabe93e_0 @ linux-64
 h2=4.2.0=pyhd8ed1ab_0 @ noarch
 hpack=4.1.0=pyhd8ed1ab_0 @ noarch
 hyperframe=6.1.0=pyhd8ed1ab_0 @ noarch
+icu=75.1=he02047a_0 @ linux-64
 idna=3.10=pyhd8ed1ab_1 @ noarch
 importlib-metadata=8.6.1=pyha770c72_0 @ noarch
 keyutils=1.6.1=h166bdaf_0 @ linux-64
@@ -54,7 +56,7 @@ libbrotlidec=1.1.0=hb9d3cd8_2 @ linux-64
 libbrotlienc=1.1.0=hb9d3cd8_2 @ linux-64
 libcblas=3.9.0=31_he106b2a_openblas @ linux-64
 libcrc32c=1.1.2=h9c3ff4c_0 @ linux-64
-libcurl=8.13.0=h332b0f4_0 @ linux-64
+libcurl=8.12.1=h332b0f4_0 @ linux-64
 libedit=3.1.20250104=pl5321h7949ede_0 @ linux-64
 libev=4.33=hd590300_2 @ linux-64
 libevent=2.1.12=hf998b51_1 @ linux-64
@@ -85,15 +87,17 @@ libthrift=0.21.0=h0e7cc3e_0 @ linux-64
 libutf8proc=2.8.0=hf23e847_1 @ linux-64
 libuuid=2.38.1=h0b41bf4_0 @ linux-64
 libxcrypt=4.4.36=hd590300_1 @ linux-64
-libxml2=2.13.7=h81593ed_1 @ linux-64
+libxml2=2.13.7=h4bc477f_1 @ linux-64
 libzlib=1.3.1=hb9d3cd8_2 @ linux-64
 lz4-c=1.9.4=hcb278e6_0 @ linux-64
+media-reference-api=0.1746.0=py_0 @ noarch
 ncurses=6.5=h2d0b736_3 @ linux-64
 numpy=1.26.4=py311h64a7726_0 @ linux-64
 openssl=3.5.0=h7b32b05_0 @ linux-64
 orc=2.0.3=he039a57_0 @ linux-64
 packaging=24.2=pyhd8ed1ab_2 @ noarch
 palantir-spark-time=3.24.0=py_0 @ noarch
+pandas=2.2.3=py311h7db5c69_3 @ linux-64
 parsimonious=0.8.1=py_0 @ noarch
 pip=25.0.1=pyh8b19718_0 @ noarch
 polars=1.27.1=py311h704aa8d_1 @ linux-64
@@ -106,6 +110,7 @@ pysocks=1.7.1=pyha55dd90_7 @ noarch
 pyspark-src=3.5.1.41=py_0 @ noarch
 pyspark=3.5.1.41=py_0 @ noarch
 python-dateutil=2.9.0.post0=pyhff2d567_1 @ noarch
+python-tzdata=2025.2=pyhd8ed1ab_0 @ noarch
 python=3.11.12=h9e4cc4f_0_cpython @ linux-64
 python_abi=3.11=6_cp311 @ linux-64
 pytz=2025.2=pyhd8ed1ab_0 @ noarch
@@ -117,8 +122,10 @@ s2n=1.5.9=h0fd0ee4_0 @ linux-64
 setuptools=70.0.0=pyhd8ed1ab_0 @ noarch
 six=1.17.0=pyhd8ed1ab_0 @ noarch
 snappy=1.2.1=h8bd8927_1 @ linux-64
+soupsieve=2.5=pyhd8ed1ab_1 @ noarch
 tk=8.6.13=noxft_h4845f30_101 @ linux-64
 transforms-expectations=0.762.0=py_0 @ noarch
+transforms-media=0.760.0=py_0 @ noarch
 transforms-preview=0.762.0=py_0 @ noarch
 transforms-verbs=0.762.0=py_0 @ noarch
 transforms=2.322.0=py_0 @ noarch
@@ -130,8 +137,8 @@ urllib3=2.4.0=pyhd8ed1ab_0 @ noarch
 wheel=0.45.1=pyhd8ed1ab_1 @ noarch
 yaml=0.2.5=h7f98852_2 @ linux-64
 zipp=3.21.0=pyhd8ed1ab_1 @ noarch
-zstandard=0.23.0=py311h9ecbd09_1 @ linux-64
-zstd=1.5.7=hb8e6e7a_2 @ linux-64
+zstandard=0.23.0=py311hbc35293_1 @ linux-64
+zstd=1.5.6=ha6fb4c9_0 @ linux-64
 
 [Conda lock version]
-v2 - f6df39a42eec65805cbc195a7b65b63803084ff51515a4416db0619dad21cf52
+v2 - f8ed1265950556a7cb7cbee0a6a178242d80e6874069657d0f1afc683c71f667
