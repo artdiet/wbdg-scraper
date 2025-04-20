@@ -1,5 +1,10 @@
 ---
 mappings:
+- alias: "ri.foundry.main.dataset.58db10e7-d87c-4f20-a0e8-3388260681d4"
+  modes:
+  - "BUILD"
+  path: "/deprecated-field"
+  rid: "ri.foundry.main.dataset.58db10e7-d87c-4f20-a0e8-3388260681d4"
 - alias: "ri.magritte..source.788a5383-dc87-44e9-9e69-a956a548f26b"
   modes:
   - "READ"
