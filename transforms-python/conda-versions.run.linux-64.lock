@@ -40,6 +40,7 @@ charset-normalizer=3.4.2=pyhd8ed1ab_0 @ noarch
 colorama=0.4.6=pyhd8ed1ab_1 @ noarch
 conjure-python-client=2.12.0=pyhd8ed1ab_1 @ noarch
 cpython=3.11.12=py311hd8ed1ab_0 @ noarch
+dataclasses=0.8=pyhc8e2a94_3 @ noarch
 decorator=5.2.1=pyhd8ed1ab_0 @ noarch
 foundry-container-sidecar-api=0.1745.0=py_0 @ noarch
 foundry-data-sidecar-api=0.836.0=py_0 @ noarch
@@ -122,6 +123,7 @@ pyaml=25.1.0=pyhd8ed1ab_0 @ noarch
 pyarrow-core=18.1.0=py311h4854187_0_cpu @ linux-64
 pyarrow=18.1.0=py311h38be061_0 @ linux-64
 pycparser=2.22=pyh29332c3_1 @ noarch
+pypdf2=3.0.1=pyhd8ed1ab_1 @ noarch
 pysocks=1.7.1=pyha55dd90_7 @ noarch
 pyspark-src=3.5.1.41=py_0 @ noarch
 pyspark=3.5.1.41=py_0 @ noarch
@@ -168,4 +170,4 @@ zstandard=0.23.0=py311h9ecbd09_2 @ linux-64
 zstd=1.5.7=hb8e6e7a_2 @ linux-64
 
 [Conda lock version]
-v2 - c8108716d85ab279b4edbdb325c6381989968d50a630098d3ef5e9eaec5d75b9
+v2 - bc61be8916fa239234a4d88b90e3248d3867d4e5d645cd53782bd7045d9b5914

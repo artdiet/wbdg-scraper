@@ -32,6 +32,7 @@ requirements:
     - transforms-media
     - transforms-external-systems
     - tqdm
+    - pypdf2
 
 build:
   script: python setup.py install --single-version-externally-managed --record=record.txt
