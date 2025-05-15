@@ -37,6 +37,7 @@ ca-certificates=2025.4.26=hbd8a1cb_0 @ noarch
 certifi=2025.4.26=pyhd8ed1ab_0 @ noarch
 cffi=1.17.1=py311hf29c0ef_0 @ linux-64
 charset-normalizer=3.4.2=pyhd8ed1ab_0 @ noarch
+colorama=0.4.6=pyhd8ed1ab_1 @ noarch
 conjure-python-client=2.12.0=pyhd8ed1ab_1 @ noarch
 cpython=3.11.12=py311hd8ed1ab_0 @ noarch
 decorator=5.2.1=pyhd8ed1ab_0 @ noarch
@@ -144,6 +145,7 @@ soupsieve=2.7=pyhd8ed1ab_0 @ noarch
 tables-api=0.1066.0=py_0 @ noarch
 tenacity=9.1.2=pyhd8ed1ab_0 @ noarch
 tk=8.6.13=noxft_h4845f30_101 @ linux-64
+tqdm=4.67.1=pyhd8ed1ab_1 @ noarch
 transforms-container-ops-python=0.81.0=py311 @ linux-64
 transforms-expectations=0.770.0=py_0 @ noarch
 transforms-external-systems=0.708.0=py_0 @ noarch
@@ -166,4 +168,4 @@ zstandard=0.23.0=py311h9ecbd09_2 @ linux-64
 zstd=1.5.7=hb8e6e7a_2 @ linux-64
 
 [Conda lock version]
-v2 - be25eab3e7792831d0fbd7f6682cf330183fbb6c144f5cf1021aa364a98836e4
+v2 - c8108716d85ab279b4edbdb325c6381989968d50a630098d3ef5e9eaec5d75b9
