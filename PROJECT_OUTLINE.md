@@ -75,7 +75,7 @@
    - Additional transformation formats
    - Performance optimizations
    - Foundry-specific optimizations
-   - **Unit tests for transforms (planned for a future build)**
+   - **Unit tests for transforms (now implemented)**
 
 2. **Technical Debt**
    - Code documentation
@@ -99,4 +99,8 @@
 
 ## Build Status
 
-- The `project-setup` branch build is currently in progress and has not yet been confirmed successful as of the last update. 
+- The `project-setup` branch build is confirmed successful as of 15 May 2025.
+
+## Project Refactoring Note
+
+- This project was refactored and modernized using Cursor on 15 May 2025. The refactor included improved error handling, robust documentation, and the addition of automated unit tests and build checks in Palantir Foundry. 
