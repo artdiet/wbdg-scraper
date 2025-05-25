@@ -1,42 +1,43 @@
-# IntelliJ
-*.iml
-*.ipr
-*.iws
-.idea/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info
+.mypy_cache/
+.pytest_cache/
+_version.py
 
-# Eclipse
-.classpath
-.checkstyle
-.factorypath
-.project
-.settings
-.ecbuild
+# Security - NEVER commit these files
+.env
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
+credentials.json
+config.ini
+secrets.yaml
 
-# Vim
-*.sw[op]
+# Output directories
+output/
+logs/
+*.log
+temp/
+tmp/
 
-# Visual Studio Code
+# IDE
 .vscode/
+.idea/
+*.swp
+*.swo
 
-# Codegen
-.generated
-.apt_generated
-generated_src/
-generated-src/
-generated_testSrc/
-**/src/generated/
-
-# OS X
+# OS
 .DS_Store
+.DS_Store?
+._*
+Thumbs.db
 
-# Java
-*.class
-
-# Build Systems
-.gradle/
-bin/
-build/
-out/
-errors.json
-
-gradle/wrapper/gradle-wrapper.properties
+# Test outputs
+test_results/
+test_output/
+*_test_output/
