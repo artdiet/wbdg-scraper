@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -5,3 +6,38 @@ __pycache__/
 .mypy_cache/
 .pytest_cache/
 _version.py
+
+# Security - NEVER commit these files
+.env
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
+credentials.json
+config.ini
+secrets.yaml
+
+# Output directories
+output/
+logs/
+*.log
+temp/
+tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# Test outputs
+test_results/
+test_output/
+*_test_output/
