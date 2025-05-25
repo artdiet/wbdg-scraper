@@ -111,7 +111,7 @@
 ## File Organization
 
 ```
-transforms-python/
+wbdg-scraper/                        # Repository root
 ├── src/myproject/
 │   ├── datasets/
 │   │   ├── wbdg_scraper.py          # Main scraper implementation
@@ -127,12 +127,16 @@ transforms-python/
 ├── requirements.txt                 # Production dependencies
 ├── Dockerfile                       # Container configuration
 ├── .dockerignore                   # Docker build exclusions
+├── .env.example                    # Environment template (copy to .env)
+├── LICENSE                         # MIT License with DTRIQ terms
+├── SECURITY.md                     # Security guidelines
 ├── CLAUDE.md                       # Complete project documentation
 ├── PROJECT_OUTLINE.md              # This file
+├── cloud_storage_examples.md       # Cloud deployment configurations
 ├── test_large_files.py             # Large-scale testing harness
+├── test_incremental.py             # Incremental functionality tests
 ├── simple_test.py                  # Basic functionality verification
-├── run_docker.sh                   # Docker deployment script
-└── setup.py                        # Package configuration
+└── run_docker.sh                   # Docker deployment script
 ```
 
 ## Cloud Storage Configuration
